@@ -4,7 +4,7 @@
 
 widget = "people"  # See https://sourcethemes.com/academic/docs/page-builder/
 headless = true  # This file represents a page section.
-active = true  # Activate this widget? true/false
+active = false  # The complete roster lives on the dedicated People page.
 weight = 75  # Order that this section will appear.
 
 title = "团队成员"

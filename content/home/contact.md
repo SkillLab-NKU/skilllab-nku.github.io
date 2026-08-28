@@ -3,7 +3,7 @@
 widget = "contact"  # See https://sourcethemes.com/academic/docs/page-builder/
 headless = true  # This file represents a page section.
 active = true  # Activate this widget? true/false
-weight = 130  # Order that this section will appear.
+weight = 90  # Close the concise homepage after News, Research, and Publications.
 
 title = "联系我们"
 subtitle = ""

@@ -14,7 +14,7 @@ baseurl = "https://skilllab-nku.github.io/"
 
 # Enter a copyright notice to display in the site footer.
 # To display a copyright symbol, type `&copy;`. For current year, type `{year}`.
-copyright = "&copy; {year} 南开大学 Skill Lab"
+copyright = "&copy; {year} SKILL Lab, Nankai University"
 
 ############################
 ## Advanced options below ##

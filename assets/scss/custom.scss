@@ -112,28 +112,35 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   font-weight: 650;
 }
 
-/* Hero: a reasoning graph, not a generic technology illustration. */
-#skill-hero { padding: 0; overflow: hidden; }
-.skill-hero {
+/* Hero: structural knowledge dissolves into continuous language flow. */
+#skill-hero {
   position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(400px, .92fr);
-  gap: 34px;
-  align-items: center;
-  min-height: 540px;
-  padding: 60px 0 56px;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 0;
+  background: #f7f8fa;
 }
-.skill-hero::before {
+#skill-hero::before {
   content: "";
   position: absolute;
-  top: 15%;
-  left: -22vw;
-  width: 48vw;
-  height: 48vw;
-  border: 1px solid rgba(126, 12, 110, .12);
-  border-radius: 50%;
-  pointer-events: none;
+  z-index: -1;
+  inset: 0;
+  background-image:
+    linear-gradient(90deg, #fff 0%, rgba(255,255,255,.98) 31%, rgba(255,255,255,.82) 45%, rgba(255,255,255,.12) 72%, rgba(255,255,255,0) 100%),
+    url('/media/hero-knowledge-sculpture-v1.png');
+  background-position: center, center right;
+  background-repeat: no-repeat;
+  background-size: cover, cover;
 }
+.skill-hero {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  min-height: 510px;
+  padding: 50px 0 48px;
+}
+.skill-hero-copy { position: relative; z-index: 2; width: 58%; max-width: 720px; }
 .skill-kicker, .skill-section-label {
   display: inline-flex;
   align-items: center;
@@ -203,20 +210,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .skill-button.primary:hover { color: #fff; background: var(--skill-violet-deep); }
 .skill-button .arrow { font-size: 1.05rem; transition: transform .2s ease; }
 .skill-button:hover .arrow { transform: translateX(3px); }
-
-.reasoning-map { position: relative; min-height: 460px; }
-.reasoning-map svg { width: 100%; height: 100%; min-height: 460px; overflow: visible; }
-.reasoning-map .orbit { fill: none; stroke: #dfe4ea; stroke-width: 1; stroke-dasharray: 3 7; }
-.reasoning-map .route { fill: none; stroke: #955087; stroke-width: 2; stroke-linecap: round; stroke-dasharray: 8 9; animation: route 14s linear infinite; }
-.reasoning-map .route-secondary { stroke: #aeb6c0; stroke-width: 1.3; stroke-dasharray: 3 8; }
-.reasoning-map .node { filter: drop-shadow(0 9px 18px rgba(29, 36, 48, .11)); }
-.reasoning-map .node-core { fill: #fff; stroke: #dfe4ea; stroke-width: 1.2; }
-.reasoning-map .node-dot { fill: var(--skill-violet); }
-.reasoning-map .node-label { fill: #4f5967; font-family: "IBM Plex Mono", monospace; font-size: 10.2px; font-weight: 600; letter-spacing: .035em; }
-.reasoning-map .core-ring { fill: rgba(126, 12, 110, .08); stroke: rgba(126, 12, 110, .32); }
-.reasoning-map .core-text { fill: var(--skill-violet-deep); font-family: "Space Grotesk", sans-serif; font-size: 22px; font-weight: 700; letter-spacing: -.04em; }
-.reasoning-map .core-sub { fill: #747887; font-family: "IBM Plex Mono", monospace; font-size: 9px; letter-spacing: .14em; }
-@keyframes route { to { stroke-dashoffset: -136; } }
 
 /* Research areas: THUNLP-inspired 3D flip interaction in Skill Lab's visual system. */
 #research-focus { border-top: 1px solid var(--skill-line); background: var(--skill-tint); }
@@ -375,13 +368,13 @@ body.dark .skill-brand-name { color: #f0cce9; }
 body.dark .home-section, body.dark .universal-wrapper, body.dark main, body.dark article { background: var(--skill-paper); }
 body.dark #selected-work, body.dark #people { background: var(--skill-paper); }
 body.dark #research-focus, body.dark #talks, body.dark #contact { background: #0f1118; }
-body.dark .research-map .node-core, body.dark .reasoning-map .node-core { fill: #12151d; stroke: #39324f; }
-body.dark .reasoning-map .node-label { fill: #b2b6c3; }
-body.dark .reasoning-map .orbit { stroke: #2b2e3b; }
-body.dark .reasoning-map .route { stroke: #7564bb; }
-body.dark .reasoning-map .core-ring { fill: rgba(169,150,255,.1); stroke: rgba(169,150,255,.42); }
-body.dark .reasoning-map .core-text { fill: #d8d0ff; }
-body.dark .reasoning-map .core-sub { fill: #9fa4b3; }
+body.dark #skill-hero { background: #0b0d12; }
+body.dark #skill-hero::before {
+  background-image:
+    linear-gradient(90deg, #0b0d12 0%, rgba(11,13,18,.99) 34%, rgba(11,13,18,.86) 50%, rgba(11,13,18,.44) 76%, rgba(11,13,18,.28) 100%),
+    url('/media/hero-knowledge-sculpture-v1.png');
+  filter: grayscale(.35) brightness(.48) contrast(1.08);
+}
 body.dark .research-flip-front { background: linear-gradient(135deg, transparent 0 67%, rgba(213,134,198,.08) 67% 67.5%, transparent 67.5%), linear-gradient(90deg, #d486c6 0 4px, transparent 4px), #171922; }
 body.dark .research-flip-front::before, body.dark .research-flip-front::after { border-color: rgba(213,134,198,.15); }
 body.dark .research-flip-front .research-flip-meta span:first-child,
@@ -399,10 +392,9 @@ body.dark .filter-search, body.dark .pub-filters { color: var(--skill-ink); back
 body.dark #container-publications .pub-view-citation { background: var(--skill-surface); }
 
 @media (max-width: 991px) {
-  .skill-hero { grid-template-columns: 1fr; min-height: auto; padding-top: 94px; }
+  .skill-hero { min-height: 510px; padding-top: 68px; }
+  .skill-hero-copy { width: 64%; max-width: 640px; }
   .skill-hero h1 { max-width: 760px; }
-  .reasoning-map { min-height: 420px; }
-  .reasoning-map svg { min-height: 420px; }
   .research-flip-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .publication-showcase { grid-template-columns: 1fr; }
   .paper-card { display: grid; grid-template-columns: minmax(260px, .8fr) 1.2fr; }
@@ -429,11 +421,22 @@ body.dark #container-publications .pub-view-citation { background: var(--skill-s
   .skill-brand-mobile .skill-brand-divider { height: 20px; }
   .skill-brand-mobile .skill-brand-name { font-size: .72rem; }
   .home-section { padding: 78px 0; }
-  .skill-hero { padding: 64px 0 48px; }
+  .skill-hero { display: block; min-height: 645px; padding: 44px 0 48px; }
+  .skill-hero-copy { width: 100%; }
   .skill-hero h1 { font-size: clamp(2.2rem, 9.6vw, 2.75rem); line-height: 1.04; }
   .skill-hero-copy > p { font-size: .88rem; }
-  .reasoning-map { margin: 0 -20px; min-height: 350px; }
-  .reasoning-map svg { min-height: 350px; }
+  #skill-hero::before {
+    background-image:
+      linear-gradient(180deg, rgba(255,255,255,.99) 0%, rgba(255,255,255,.96) 46%, rgba(255,255,255,.48) 66%, rgba(255,255,255,.08) 100%),
+      url('/media/hero-knowledge-sculpture-v1.png');
+    background-position: center, 62% bottom;
+    background-size: cover, auto 63%;
+  }
+  body.dark #skill-hero::before {
+    background-image:
+      linear-gradient(180deg, rgba(11,13,18,.99) 0%, rgba(11,13,18,.97) 46%, rgba(11,13,18,.68) 68%, rgba(11,13,18,.42) 100%),
+      url('/media/hero-knowledge-sculpture-v1.png');
+  }
   .minimal-section-title { align-items: flex-end; margin-bottom: 24px; }
   .research-flip-grid { grid-template-columns: 1fr; gap: 14px; }
   .research-flip-card { height: 316px; }

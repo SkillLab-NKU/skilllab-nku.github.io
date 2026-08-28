@@ -5,9 +5,9 @@
 widget = "pages"  # See https://sourcethemes.com/academic/docs/page-builder/
 headless = true  # This file represents a page section.
 active = true  # Activate this widget? true/false
-weight = 65  # Order that this section will appear.
+weight = 25  # Keep the latest lab activity directly below the hero.
 
-title = "News"
+title = "Latest News"
 subtitle = ""
 
 [content]

@@ -2,7 +2,7 @@
 # Tag Cloud widget.
 widget = "tag_cloud"  # See https://sourcethemes.com/academic/docs/page-builder/
 headless = true  # This file represents a page section.
-active = true  # Activate this widget? true/false
+active = false  # Research themes are already expressed by the Research Focus section.
 weight = 120  # Order that this section will appear.
 
 title = "研究主题"

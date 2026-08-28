@@ -1,8 +1,8 @@
 +++
 widget = "research_focus"
 headless = true
-active = true
-weight = 30
+active = false
+weight = 35
 title = "Research Focus"
 
 [[directions]]
