@@ -1,0 +1,41 @@
+{{ $ := .root }}
+{{ $page := .page }}
+<div class="minimal-section-title">
+  <span>Research</span>
+  <span class="minimal-section-title-cn">研究方向</span>
+</div>
+<div class="research-flip-grid">
+  {{ range $page.Params.directions }}
+    <article class="research-flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="查看{{ .title_zh }}方向介绍">
+      <div class="research-flip-inner">
+        <div class="research-flip-face research-flip-front">
+          <div class="research-flip-meta">
+            <span>{{ .code }}</span>
+            <span>Research Area</span>
+          </div>
+          <div class="research-flip-title">
+            <span>{{ .title_zh }}</span>
+            <h3>{{ .title }}</h3>
+          </div>
+          <div class="research-flip-hint">
+            <span>Hover / Tap to explore</span>
+            <span>↗</span>
+          </div>
+        </div>
+        <div class="research-flip-face research-flip-back">
+          <div class="research-flip-meta">
+            <span>{{ .code }}</span>
+            <span>{{ .title }}</span>
+          </div>
+          <div class="research-flip-copy">
+            <h3>{{ .title_zh }}</h3>
+            <p>{{ .description }}</p>
+          </div>
+          <div class="research-flip-keywords">
+            {{ range .keywords }}<span>{{ . }}</span>{{ end }}
+          </div>
+        </div>
+      </div>
+    </article>
+  {{ end }}
+</div>

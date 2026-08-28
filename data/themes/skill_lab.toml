@@ -1,0 +1,24 @@
+# Skill Lab visual theme
+name = "Skill Lab"
+light = true
+primary = "#7e0c6e"
+link = "#7e0c6e"
+link_hover = "#56064c"
+background = "#ffffff"
+menu_primary = "rgba(255, 255, 255, 0.94)"
+menu_text = "#3f4854"
+menu_text_active = "#7e0c6e"
+menu_title = "#1d2430"
+home_section_odd = "#ffffff"
+home_section_even = "#f4f6f8"
+
+[dark]
+background = "#0b0d12"
+link = "#e1a7d6"
+link_hover = "#f4d9ee"
+menu_primary = "rgba(11, 13, 18, 0.94)"
+menu_text = "#aeb2c0"
+menu_text_active = "#ffffff"
+menu_title = "#ffffff"
+home_section_odd = "#0b0d12"
+home_section_even = "#0f1118"

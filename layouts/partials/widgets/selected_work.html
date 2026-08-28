@@ -1,0 +1,28 @@
+{{ $ := .root }}
+{{ $page := .page }}
+{{ $papers := where site.RegularPages "Section" "publication" }}
+{{ $papers = where $papers ".Params.featured" true }}
+<div class="minimal-section-title">
+  <span>Selected Publications</span>
+  <a href="{{ "/publication/" | relURL }}">All publications <span>↗</span></a>
+</div>
+<div class="publication-showcase">
+  {{ range $index, $paper := first 3 $papers.ByDate.Reverse }}
+  {{ $figure := $paper.Resources.GetMatch "featured.*" }}
+  <a class="paper-card" href="{{ $paper.RelPermalink }}">
+    <div class="paper-visual">
+      {{ with $figure }}
+        <img src="{{ .RelPermalink }}" alt="{{ $paper.Title }} 方法概览" loading="lazy" decoding="async">
+      {{ else }}
+        <div class="paper-visual-fallback">SKILL LAB / {{ $paper.Date.Format "2006" }}</div>
+      {{ end }}
+      <span class="paper-venue">{{ $paper.Params.publication }}</span>
+    </div>
+    <div class="paper-body">
+      <h3>{{ $paper.Title }}</h3>
+      <div class="paper-authors">{{ delimit $paper.Params.authors ", " }}</div>
+      <div class="paper-arrow"><span>查看论文详情</span><span>↗</span></div>
+    </div>
+  </a>
+  {{ end }}
+</div>

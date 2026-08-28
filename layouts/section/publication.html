@@ -1,0 +1,124 @@
+{{- define "main" -}}
+
+{{ partial "page_header.html" . }}
+
+<div class="universal-wrapper">
+  <div class="row">
+    <div class="col-lg-12">
+
+      {{ with .Content }}
+      <div class="article-style">{{ . }}</div>
+      {{ end }}
+
+      {{/* Array of distinct years. */}}
+      {{ range .Pages.ByDate.Reverse }}
+        {{ $year := print (.Date.Format "2006") }}
+        {{ $.Scratch.SetInMap "years" $year $year }}
+      {{ end }}
+
+      <div class="form-row mb-4">
+        <div class="col-auto">
+          <input type="search" class="filter-search" placeholder="{{ i18n "search_placeholder" }}" autocapitalize="off"
+          autocomplete="off" autocorrect="off" role="textbox" spellcheck="false">
+        </div>
+        <div class="col-auto">
+          <select class="pub-filters pubtype-select form-control form-control-sm" data-filter-group="pubtype">
+            <option value="*">{{ i18n "publication_type" }}</option>
+            {{ $pub_types := partial "functions/get_pub_types" $ }}
+            {{ range $index, $taxonomy := site.Taxonomies.publication_types }}
+            <option value=".pubtype-{{ (int $index) }}">
+              {{ index $pub_types (int $index) }}
+            </option>
+            {{ end }}
+          </select>
+        </div>
+        <div class="col-auto">
+          <select class="pub-filters form-control form-control-sm" data-filter-group="year">
+            <option value="*">{{ i18n "date" }}</option>
+            {{ $years_sorted := $.Scratch.GetSortedMapValues "years" }}
+            {{ if $years_sorted }}
+            {{ range $year := sort $years_sorted "" "desc" }}
+            <option value=".year-{{ $year }}">
+              {{ $year }}
+            </option>
+            {{ end }}
+            {{ end }}
+          </select>
+        </div>
+        <div class="col-auto ml-auto">
+          <div class="btn-group" role="group" aria-label="Publication view toggle">
+            <button type="button" class="btn btn-sm btn-outline-primary active" id="view-citation-btn" onclick="switchPubView('citation')">
+              <i class="fas fa-list"></i> List
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-primary" id="view-card-btn" onclick="switchPubView('card')">
+              <i class="fas fa-th-large"></i> Card
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="container-publications">
+        {{ $.Scratch.Set "current_year" "" }}
+        {{ range .Pages.ByDate.Reverse }}
+
+        {{ $year := .Date.Format "2006" }}
+        {{ if ne $year ($.Scratch.Get "current_year") }}
+        {{ $.Scratch.Set "current_year" $year }}
+        <div class="grid-sizer col-lg-12 isotope-item year-heading-item year-{{ $year }}">
+          <h2 class="pub-year-heading" style="margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 1.75rem; color: #333;">{{ $year }}</h2>
+          <hr style="border-top: 2px solid #ddd; margin-bottom: 1rem;">
+        </div>
+        {{ end }}
+
+        {{ if .Params.publication_types }}
+          {{ $.Scratch.Set "pubtype" (index .Params.publication_types 0) }}
+        {{ else }}
+          {{ $.Scratch.Set "pubtype" 0 }}
+        {{ end }}
+
+        <div class="grid-sizer col-lg-12 isotope-item pubtype-{{ $.Scratch.Get "pubtype" }} year-{{ .Date.Format "2006" }}">
+          <div class="pub-view-citation">
+            {{ partial "li_citation" . }}
+          </div>
+          <div class="pub-view-card" style="display:none;">
+            {{ partial "li_card" . }}
+          </div>
+        </div>
+
+        {{ end }}
+      </div>
+
+      <script>
+      function switchPubView(view) {
+        const citationEls = document.querySelectorAll('.pub-view-citation');
+        const cardEls = document.querySelectorAll('.pub-view-card');
+        const btnCitation = document.getElementById('view-citation-btn');
+        const btnCard = document.getElementById('view-card-btn');
+        
+        if (view === 'citation') {
+          citationEls.forEach(function(el) { el.style.display = ''; });
+          cardEls.forEach(function(el) { el.style.display = 'none'; });
+          btnCitation.classList.add('active');
+          btnCard.classList.remove('active');
+        } else {
+          citationEls.forEach(function(el) { el.style.display = 'none'; });
+          cardEls.forEach(function(el) { el.style.display = ''; });
+          btnCard.classList.add('active');
+          btnCitation.classList.remove('active');
+        }
+        
+        // Trigger isotope layout update if available
+        if (window.jQuery) {
+          var $container = jQuery('#container-publications');
+          if ($container.data('isotope')) {
+            $container.isotope('layout');
+          }
+        }
+      }
+      </script>
+
+    </div>
+  </div>
+</div>
+
+{{- end -}}
