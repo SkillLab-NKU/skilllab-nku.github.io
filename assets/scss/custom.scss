@@ -153,34 +153,30 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   background: currentColor;
 }
 .skill-hero h1 {
-  max-width: 720px;
+  max-width: 760px;
   margin: 0;
-  font-size: clamp(3rem, 5vw, 4.9rem);
+  font-size: clamp(2.7rem, 4.15vw, 3.35rem);
   font-weight: 700;
-  line-height: 1.07;
-  letter-spacing: -.055em;
+  line-height: 1.02;
+  letter-spacing: -.05em;
+}
+.skill-lab-title > span { display: block; }
+.skill-lab-title .lab-name {
+  font-size: .84em;
+  line-height: 1.08;
+  letter-spacing: -.04em;
 }
 .skill-hero h1 .accent {
   color: var(--skill-violet);
   font-weight: 700;
+  margin-bottom: .12em;
 }
 .skill-hero-copy > p {
-  max-width: 650px;
-  margin: 25px 0 0;
+  max-width: 610px;
+  margin: 28px 0 0;
   color: var(--skill-muted);
-  font-size: clamp(.98rem, 1.35vw, 1.12rem);
-  line-height: 1.8;
-}
-.skill-hero-copy > p strong { color: var(--skill-ink); font-weight: 650; }
-.skill-hero-copy > .skill-hero-en {
-  margin-top: 12px;
-  color: var(--skill-violet);
-  font-family: "IBM Plex Mono", monospace;
-  font-size: .66rem;
-  font-weight: 600;
-  letter-spacing: .11em;
-  line-height: 1.4;
-  text-transform: uppercase;
+  font-size: clamp(.85rem, 1.08vw, .98rem);
+  line-height: 1.65;
 }
 .skill-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 29px; }
 .skill-button {
@@ -219,19 +215,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .reasoning-map .core-text { fill: var(--skill-violet-deep); font-family: "Space Grotesk", sans-serif; font-size: 22px; font-weight: 700; letter-spacing: -.04em; }
 .reasoning-map .core-sub { fill: #747887; font-family: "IBM Plex Mono", monospace; font-size: 9px; letter-spacing: .14em; }
 @keyframes route { to { stroke-dashoffset: -136; } }
-
-.skill-hero-meta {
-  position: absolute;
-  right: 0;
-  bottom: 24px;
-  display: flex;
-  gap: 26px;
-  color: #777c8b;
-  font-family: "IBM Plex Mono", monospace;
-  font-size: .61rem;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-}
 
 /* Research areas: THUNLP-inspired 3D flip interaction in Skill Lab's visual system. */
 #research-focus { border-top: 1px solid var(--skill-line); background: var(--skill-tint); }
@@ -418,7 +401,6 @@ body.dark #container-publications .pub-view-citation { background: var(--skill-s
   .skill-hero h1 { max-width: 760px; }
   .reasoning-map { min-height: 420px; }
   .reasoning-map svg { min-height: 420px; }
-  .skill-hero-meta { position: static; margin-top: -22px; }
   .research-flip-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .publication-showcase { grid-template-columns: 1fr; }
   .paper-card { display: grid; grid-template-columns: minmax(260px, .8fr) 1.2fr; }
@@ -446,11 +428,10 @@ body.dark #container-publications .pub-view-citation { background: var(--skill-s
   .skill-brand-mobile .skill-brand-name { font-size: .72rem; }
   .home-section { padding: 78px 0; }
   .skill-hero { padding: 64px 0 48px; }
-  .skill-hero h1 { font-size: clamp(2.65rem, 11vw, 3.55rem); line-height: 1.08; }
-  .skill-hero-copy > p { font-size: 1rem; }
+  .skill-hero h1 { font-size: clamp(2.2rem, 9.6vw, 2.75rem); line-height: 1.04; }
+  .skill-hero-copy > p { font-size: .88rem; }
   .reasoning-map { margin: 0 -20px; min-height: 350px; }
   .reasoning-map svg { min-height: 350px; }
-  .skill-hero-meta { flex-direction: column; gap: 5px; }
   .minimal-section-title { align-items: flex-end; margin-bottom: 24px; }
   .research-flip-grid { grid-template-columns: 1fr; gap: 14px; }
   .research-flip-card { height: 316px; }
