@@ -162,14 +162,16 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 }
 .skill-lab-title > span { display: block; }
 .skill-lab-title .lab-name {
-  font-size: .84em;
-  line-height: 1.08;
-  letter-spacing: -.04em;
+  margin-top: .42em;
+  color: var(--skill-ink);
+  font-size: .46em;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: .005em;
 }
 .skill-hero h1 .accent {
   color: var(--skill-violet);
   font-weight: 700;
-  margin-bottom: .12em;
 }
 .skill-hero-copy > p {
   max-width: 610px;
