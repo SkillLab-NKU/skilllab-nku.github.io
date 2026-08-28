@@ -1,0 +1,8 @@
+# IDEs
+.idea/
+
+# Hugo
+resources/
+public/
+.hugo_build.lock
+_site/
