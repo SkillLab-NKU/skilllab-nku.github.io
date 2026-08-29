@@ -336,10 +336,71 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 
 /* Bring native Wowchemy sections into the same system. */
 #talks, #people, #contact { border-top: 1px solid var(--skill-line); }
-#talks, #contact { background: var(--skill-tint); }
+#talks { background: var(--skill-paper); }
+#contact { background: var(--skill-tint); }
 #people { background: #fff; }
-#talks .media.stream-item { padding: 22px 0; border-bottom: 1px solid var(--skill-line); }
-#talks .article-title { font-weight: 620; }
+
+#talks > .container > .row {
+  display: block;
+}
+
+#talks > .container > .row > .section-heading,
+#talks > .container > .row > .section-heading + .col-12 {
+  width: 100%;
+  max-width: 100%;
+  flex: 0 0 100%;
+}
+
+#talks .section-heading {
+  margin-bottom: 34px !important;
+  text-align: center;
+}
+#talks .section-heading h1 {
+  color: var(--skill-ink);
+  font-size: clamp(2rem, 3.4vw, 3rem);
+  font-weight: 650;
+  letter-spacing: -.045em;
+}
+#talks .card-simple {
+  max-width: 980px;
+  margin: 0 auto 24px;
+  padding: 30px 34px 28px;
+  border: 1px solid var(--skill-line);
+  border-radius: 8px;
+  background: var(--skill-surface);
+  box-shadow: 0 12px 32px rgba(42, 28, 43, .055);
+  transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+#talks .card-simple:hover {
+  border-color: rgba(126, 12, 110, .24);
+  box-shadow: 0 18px 42px rgba(72, 28, 65, .09);
+  transform: translateY(-2px);
+}
+#talks .card-simple:last-child { margin-bottom: 0; }
+#talks .article-metadata {
+  margin-bottom: 14px;
+  color: var(--skill-muted);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: .64rem;
+  letter-spacing: .035em;
+}
+#talks .article-title {
+  margin: 0 0 12px !important;
+  color: var(--skill-ink);
+  font-size: clamp(1.12rem, 1.7vw, 1.42rem);
+  font-weight: 650;
+  line-height: 1.38;
+  letter-spacing: -.025em;
+}
+#talks .article-title a { color: inherit; }
+#talks .article-title a:hover { color: var(--skill-violet); }
+#talks .article-style {
+  color: var(--skill-muted);
+  font-size: .88rem;
+  line-height: 1.75;
+}
+#talks .article-style p { margin: 0; }
+#talks .summary-link:hover { text-decoration: none; }
 .people-widget { gap: 18px 0; }
 .people-person { padding: 24px 18px; border-radius: 9px; transition: background .2s ease, transform .2s ease; }
 .people-person:hover { background: rgba(126, 12, 110, .045); transform: translateY(-3px); }
@@ -382,6 +443,12 @@ body.dark .skill-brand-name { color: #f0cce9; }
 body.dark .home-section, body.dark .universal-wrapper, body.dark main, body.dark article { background: var(--skill-paper); }
 body.dark #selected-work, body.dark #people { background: var(--skill-paper); }
 body.dark #research-focus, body.dark #talks, body.dark #contact { background: #0f1118; }
+body.dark #talks .card-simple {
+  border-color: #30323c;
+  background: #171922;
+  box-shadow: 0 14px 34px rgba(0,0,0,.22);
+}
+body.dark #talks .card-simple:hover { border-color: rgba(217,137,200,.3); }
 body.dark #skill-hero { background: #0b0d12; }
 body.dark #skill-hero::before {
   background-image: url('/media/hero-ribbon-a2.png');

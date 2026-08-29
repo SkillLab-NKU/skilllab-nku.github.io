@@ -3,9 +3,7 @@
 
 {{/* Dynamic view adjusts to content type. */}}
 {{ $show_buttons := false }}
-{{ if eq $item.Type "talk" }}
-  {{ $show_buttons = true }}
-{{ else if eq $item.Type "publication" }}
+{{ if eq $item.Type "publication" }}
   {{ $show_buttons = true }}
 {{ end }}
 
@@ -23,18 +21,9 @@
 
   {{ if eq $item.Type "talk" }}
   <div class="article-metadata">
-    {{ if $item.Params.authors }}
-    <div>
-      {{ partial "page_metadata_authors" $item }}
-    </div>
-    {{ end }}
-    <span>
-      {{ partial "functions/get_event_dates" $item }}
-    </span>
-    {{ with $item.Params.location }}
+    <span class="article-date">Last updated on {{ $item.Lastmod.Format "Jan 2, 2006" }}</span>
     <span class="middot-divider"></span>
-    <span>{{ . }}</span>
-    {{ end }}
+    <span class="article-reading-time">{{ $item.ReadingTime }} min read</span>
   </div>
   {{ else }}
     {{ partial "page_metadata" (dict "page" $item "is_list" 1) }}
@@ -48,7 +37,7 @@
   </a>
   {{end}}
 
-  <h3 class="article-title mb-1 mt-3">
+  <h3 class="section-subheading article-title mb-1 mt-3">
     <a href="{{ $item.RelPermalink }}">{{ $item.Title }}</a>
   </h3>
   {{ if not $resource }}
