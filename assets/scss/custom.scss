@@ -127,7 +127,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   inset: 0;
   background-image:
     linear-gradient(90deg, #fff 0%, rgba(255,255,255,.98) 31%, rgba(255,255,255,.82) 45%, rgba(255,255,255,.12) 72%, rgba(255,255,255,0) 100%),
-    url('/media/hero-knowledge-sculpture-v1.png');
+    url('/media/hero-ribbon-a2.png');
   background-position: center, center right;
   background-repeat: no-repeat;
   background-size: cover, cover;
@@ -370,10 +370,9 @@ body.dark #selected-work, body.dark #people { background: var(--skill-paper); }
 body.dark #research-focus, body.dark #talks, body.dark #contact { background: #0f1118; }
 body.dark #skill-hero { background: #0b0d12; }
 body.dark #skill-hero::before {
-  background-image:
-    linear-gradient(90deg, #0b0d12 0%, rgba(11,13,18,.99) 34%, rgba(11,13,18,.86) 50%, rgba(11,13,18,.44) 76%, rgba(11,13,18,.28) 100%),
-    url('/media/hero-knowledge-sculpture-v1.png');
-  filter: grayscale(.35) brightness(.48) contrast(1.08);
+  background-image: url('/media/hero-ribbon-a2.png');
+  filter: invert(1) hue-rotate(180deg) brightness(.62) contrast(1.16) saturate(1.1);
+  opacity: .78;
 }
 body.dark .research-flip-front { background: linear-gradient(135deg, transparent 0 67%, rgba(213,134,198,.08) 67% 67.5%, transparent 67.5%), linear-gradient(90deg, #d486c6 0 4px, transparent 4px), #171922; }
 body.dark .research-flip-front::before, body.dark .research-flip-front::after { border-color: rgba(213,134,198,.15); }
@@ -428,14 +427,12 @@ body.dark #container-publications .pub-view-citation { background: var(--skill-s
   #skill-hero::before {
     background-image:
       linear-gradient(180deg, rgba(255,255,255,.99) 0%, rgba(255,255,255,.96) 46%, rgba(255,255,255,.48) 66%, rgba(255,255,255,.08) 100%),
-      url('/media/hero-knowledge-sculpture-v1.png');
+      url('/media/hero-ribbon-a2.png');
     background-position: center, 62% bottom;
     background-size: cover, auto 63%;
   }
   body.dark #skill-hero::before {
-    background-image:
-      linear-gradient(180deg, rgba(11,13,18,.99) 0%, rgba(11,13,18,.97) 46%, rgba(11,13,18,.68) 68%, rgba(11,13,18,.42) 100%),
-      url('/media/hero-knowledge-sculpture-v1.png');
+    background-image: url('/media/hero-ribbon-a2.png');
   }
   .minimal-section-title { align-items: flex-end; margin-bottom: 24px; }
   .research-flip-grid { grid-template-columns: 1fr; gap: 14px; }
