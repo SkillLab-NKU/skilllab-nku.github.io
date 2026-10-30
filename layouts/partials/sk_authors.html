@@ -1,0 +1,11 @@
+{{/* Author list for a publication; lab members with a profile are linked and highlighted. */}}
+{{- $n := len .Params.authors -}}
+{{- range $i, $name := .Params.authors -}}
+  {{- $profile := site.GetPage (printf "/authors/%s" (urlize $name)) -}}
+  {{- if and $profile (ne $profile.File nil) (ne $profile.Params.superuser true) -}}
+    <a class="sk-author is-member" href="{{ $profile.RelPermalink }}">{{ $name }}</a>
+  {{- else -}}
+    <span class="sk-author">{{ $name }}</span>
+  {{- end -}}
+  {{- if lt (add $i 1) $n }}, {{ end -}}
+{{- end -}}

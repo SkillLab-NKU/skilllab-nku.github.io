@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{{- $language_code := site.LanguageCode | default "en-us" -}}
+<html lang="{{$language_code}}" class="no-js">
+
+{{ partial "site_head" . }}
+
+{{/* SKILL Lab shell: Wowchemy's head/search/js are kept, the chrome around them is our own. */}}
+<body id="top" class="sk {{ if not (.Scratch.Get "light") }}dark{{end}} sk-type-{{ .Type }}{{ if .IsHome }} sk-home{{ end }}">
+  <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+
+  {{ if site.Params.day_night }}
+    <script>window.wcDarkLightEnabled = true;</script>
+  {{ end }}
+  {{ if eq (.Scratch.Get "light") true }}
+    <script>const isSiteThemeDark = false;</script>
+  {{ else }}
+    <script>const isSiteThemeDark = true;</script>
+  {{ end }}
+  {{ $load_theme := resources.Get "js/load-theme.js" }}
+  <script src="{{ $load_theme.RelPermalink }}"></script>
+
+  <div class="sk-progress" aria-hidden="true"><i></i></div>
+
+  {{ partial "search" . }}
+
+  {{ partial "navbar" . }}
+
+  <main class="sk-main" id="main">
+    {{ block "main" . }}{{ end }}
+  </main>
+
+  {{ partial "site_js" . }}
+
+  {{ partial "site_footer" . }}
+
+  {{ partial "citation" . }}
+
+</body>
+</html>

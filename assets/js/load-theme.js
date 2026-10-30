@@ -1,6 +1,10 @@
 (function () {
+  // First-time visitors start in light mode (0); the navbar toggle cycles light / dark / system.
   function getThemeMode() {
-    return parseInt(localStorage.getItem('dark_mode') || '0');
+    if (localStorage.getItem('dark_mode') === null) {
+      localStorage.setItem('dark_mode', '0');
+    }
+    return parseInt(localStorage.getItem('dark_mode'));
   }
 
   function canChangeTheme() {

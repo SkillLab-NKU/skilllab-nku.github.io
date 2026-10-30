@@ -1,29 +1,27 @@
 ---
-title: "开源"
-summary: "SKILL Lab 公开代码、模型与可复现研究资源。"
+title: "Open Source"
+summary: "Public code, models and reproducible research resources from SKILL Lab."
 date: 2026-08-28
 draft: false
+type: skillpage
+lead: "Code and reproducible resources released alongside our papers."
+
+# Each repo becomes a card. `github` is "owner/name"; live stars/forks are fetched in the browser.
+repos:
+  - name: CodeTaxo
+    github: QingkaiZeng/CodeTaxo-Pub
+    description: Taxonomy expansion from limited examples using code-language prompts.
+    paper: /publication/2025-acl-codetaxo/
+    venue: Findings of ACL 2025
+    tags: ["Taxonomy Expansion", "Code Prompt"]
+  - name: Chain-of-Layer
+    github: QingkaiZeng/Chain-of-Layer
+    description: Iteratively prompting LLMs layer by layer to induce taxonomies from limited examples.
+    paper: /publication/2024-cikm-chain-of-layer/
+    venue: CIKM 2024
+    tags: ["Taxonomy Induction", "LLM Prompting"]
+  - name: SkillLab-NKU
+    github: SkillLab-NKU
+    description: The lab's GitHub organisation, where new projects will be released.
+    tags: ["Organization"]
 ---
-
-## 开源项目
-
-我们会在这里持续汇集已经公开的研究代码与可复现资源。
-
-### CodeTaxo
-
-通过代码语言提示，在有限示例下增强分类体系扩展。
-
-- [项目代码](https://github.com/QingkaiZeng/CodeTaxo-Pub)
-- [论文页面](/publication/2025-acl-codetaxo/)
-
-### Chain-of-Layer
-
-通过逐层迭代提示大语言模型，从有限示例中完成分类体系归纳。
-
-- [项目代码](https://github.com/QingkaiZeng/Chain-of-Layer)
-- [论文页面](/publication/2024-cikm-chain-of-layer/)
-
-### SkillLab-NKU
-
-更多实验室网站与公开项目将发布在 [SkillLab-NKU GitHub](https://github.com/SkillLab-NKU)。
-

@@ -1,0 +1,61 @@
+{{- define "main" -}}
+{{ $hero := .Params.hero }}
+{{ $pubs := (where site.RegularPages "Section" "publication").ByDate.Reverse }}
+{{ $featured := where $pubs ".Params.featured" true }}
+{{ $news := first 4 (where site.RegularPages "Section" "talk").ByDate.Reverse }}
+
+{{/* Hero */}}
+<section class="sk-hero" id="hero">
+  <canvas class="sk-graph" data-scene="graph" data-density="0.8" aria-hidden="true"></canvas>
+  <div class="sk-hero-vignette" aria-hidden="true"></div>
+
+  <div class="sk-wrap sk-hero-inner">
+    <div class="sk-eyebrow sk-hero-kicker">{{ $hero.kicker }}</div>
+    <div class="sk-acro-block">
+      <h1 class="sk-acronym" aria-label="SKILL Lab — Structural Knowledge &amp; Intelligent Language Lab">
+        {{- range $i, $a := $hero.acronym -}}<span class="sk-acro" style="--i: {{ $i }}" aria-hidden="true">{{ $a.letter }}</span>{{- end -}}
+      </h1>
+      <p class="sk-acro-words" aria-hidden="true">
+        {{- range $i, $a := $hero.acronym }}<span style="--i: {{ $i }}"><b>{{ $a.letter }}</b>{{ slicestr $a.word 1 }}</span>{{ end -}}
+      </p>
+    </div>
+    <p class="sk-hero-rotate">
+      <span>{{ $hero.rotate_prefix }}</span>
+      <strong class="sk-typer" data-words="{{ delimit $hero.rotate "|" }}">{{ index $hero.rotate 0 }}</strong>
+    </p>
+    <p class="sk-hero-lead">{{ $hero.lead }}</p>
+  </div>
+</section>
+
+{{/* News */}}
+{{ with $news }}
+<section class="sk-section sk-home-news" id="news">
+  <div class="sk-wrap">
+    <div class="sk-section-head" data-reveal>
+      <h2>Latest News</h2>
+      <a class="sk-link-arrow" href="{{ "/talk/" | relURL }}">All news <span>→</span></a>
+    </div>
+    <div class="sk-news-list">
+      {{ range . }}{{ partial "sk_news_row" . }}{{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* Selected publications (featured: true) — one wide row per paper, figure left / text right (after pi-lab.xyz). */}}
+{{ $recent := $featured | default $pubs }}
+{{ with first 5 $recent }}
+<section class="sk-section sk-projects" id="papers">
+  <div class="sk-wrap">
+    <div class="sk-section-head" data-reveal>
+      <h2>Selected Publications</h2>
+      <a class="sk-link-arrow" href="{{ "/publication/" | relURL }}">All publications <span>→</span></a>
+    </div>
+    <div class="sk-project-list">
+      {{ range . }}{{ partial "sk_project_row" . }}{{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{- end -}}

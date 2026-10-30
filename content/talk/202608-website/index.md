@@ -1,9 +1,9 @@
 ---
-title: 'Skill Lab 官网建设正式启动'
-summary: '实验室官网与公开科研成果索引开始建设。'
+title: 'SKILL Lab website launched'
+summary: 'We started building the lab website and an index of our public research.'
 date: '2026-08-01'
 featured: false
 draft: false
 ---
 
-Skill Lab 官网与公开科研成果索引开始建设。
+We started building the SKILL Lab website and an index of our public research outputs.

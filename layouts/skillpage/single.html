@@ -1,0 +1,60 @@
+{{- define "main" -}}
+{{/* Generic content page (About / Join / Open Source): banner + optional data blocks + prose. */}}
+{{ partial "page_banner" (dict "title" .Title "kicker" (printf "SKILL Lab · %s" .Title) "lead" .Params.lead "scene" (.Params.scene | default "graph")) }}
+
+{{ with .Params.openings }}
+<section class="sk-section sk-openings-section">
+  <div class="sk-wrap">
+    <div class="sk-openings">
+      {{ range $i, $o := . }}
+      <div class="sk-opening-card" data-spotlight data-reveal style="--d: {{ $i }}">
+        <strong class="sk-gradient-text">{{ $o.count }}</strong>
+        <span>{{ $o.label }}</span>
+      </div>
+      {{ end }}
+    </div>
+    {{ with $.Params.cta }}<div class="sk-actions sk-openings-cta" data-reveal><a class="sk-btn sk-btn-primary" href="{{ .link }}">{{ .label }} <span aria-hidden="true">→</span></a></div>{{ end }}
+  </div>
+</section>
+{{ end }}
+
+{{ with .Params.repos }}
+<section class="sk-section sk-repos-section">
+  <div class="sk-wrap sk-repos">
+    {{ range $i, $r := . }}
+    <article class="sk-repo" data-repo="{{ $r.github }}" data-spotlight data-reveal style="--d: {{ $i }}">
+      <div class="sk-repo-top">
+        <i class="fab fa-github" aria-hidden="true"></i>
+        <span class="sk-repo-path">{{ $r.github }}</span>
+      </div>
+      <h3><a href="https://github.com/{{ $r.github }}" target="_blank" rel="noopener">{{ $r.name }}</a></h3>
+      <p>{{ $r.description }}</p>
+      <div class="sk-tags">{{ range $r.tags }}<span>{{ . }}</span>{{ end }}</div>
+      <div class="sk-repo-foot">
+        <span class="sk-repo-stat" data-stat="stars" hidden><i class="far fa-star" aria-hidden="true"></i> <b>–</b></span>
+        <span class="sk-repo-stat" data-stat="forks" hidden><i class="fas fa-code-branch" aria-hidden="true"></i> <b>–</b></span>
+        {{ with $r.paper }}<a class="sk-chip-btn" href="{{ . | relURL }}"><i class="far fa-file-alt" aria-hidden="true"></i> {{ $r.venue | default "Paper" }}</a>{{ end }}
+        <a class="sk-chip-btn" href="https://github.com/{{ $r.github }}" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </article>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+
+{{ if .Params.show_pi }}
+<section class="sk-section sk-about-pi">
+  <div class="sk-wrap">{{ with site.GetPage "/authors/qingkai-zeng" }}{{ partial "sk_pi_card" . }}{{ end }}</div>
+</section>
+{{ end }}
+
+{{ with .Content }}
+<section class="sk-section sk-page-content">
+  <div class="sk-wrap sk-narrow">
+    <article class="sk-prose" data-reveal>{{ . }}</article>
+  </div>
+</section>
+{{ end }}
+
+{{ if ne .Section "join" }}{{ partial "sk_cta" . }}{{ end }}
+{{- end -}}

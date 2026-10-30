@@ -1,6 +1,6 @@
 # Skill Lab type system
 name = "Skill Lab"
-google_fonts = "Space+Grotesk:400,500,600,700|Inter:400,500,600,700|Noto+Sans+SC:400,500,600,700,800|IBM+Plex+Mono:400,500,600"
+google_fonts = "Space+Grotesk:400,500,600,700|Inter:400,500,600,700|Noto+Sans+SC:400,500,600,700|IBM+Plex+Mono:400,500,600|Instrument+Serif:400,400i"
 heading_font = "Space Grotesk"
 body_font = "Inter"
 nav_font = "Space Grotesk"

@@ -1,0 +1,19 @@
+{{- define "main" -}}
+<header class="sk-banner sk-article-banner">
+  <canvas class="sk-graph" data-scene="reasoning" data-density="0.5" aria-hidden="true"></canvas>
+  <div class="sk-banner-fade" aria-hidden="true"></div>
+  <div class="sk-wrap sk-narrow">
+    <a class="sk-back" href="{{ "/talk/" | relURL }}" data-reveal>← All news</a>
+    <time class="sk-eyebrow" datetime="{{ .Date.Format "2006-01-02" }}" data-reveal>{{ .Date.Format "January 2, 2006" }}</time>
+    <h1 class="sk-pub-title" data-reveal>{{ .Title }}</h1>
+    {{ with .Params.summary }}<p class="sk-banner-lead" data-reveal>{{ . }}</p>{{ end }}
+  </div>
+</header>
+
+<section class="sk-section">
+  <div class="sk-wrap sk-narrow">
+    <article class="sk-prose" data-reveal>{{ .Content }}</article>
+    {{ with .PrevInSection }}<a class="sk-link-arrow sk-next" href="{{ .RelPermalink }}">Next: {{ .Title }} <span>→</span></a>{{ end }}
+  </div>
+</section>
+{{- end -}}

@@ -1,124 +1,62 @@
 {{- define "main" -}}
+{{ $pubs := (where site.RegularPages "Section" "publication").ByDate.Reverse }}
+{{ $dirs := site.Data.topics }}
+{{ $years := slice }}
+{{ range $pubs }}{{ $years = $years | append (.Date.Format "2006") }}{{ end }}
+{{ $years = uniq $years }}
 
-{{ partial "page_header.html" . }}
+{{ partial "page_banner" (dict "title" "Publications" "kicker" "SKILL Lab · Publications" "lead" (.Content | plainify | htmlUnescape) "scene" "clusters") }}
 
-<div class="universal-wrapper">
-  <div class="row">
-    <div class="col-lg-12">
-
-      {{ with .Content }}
-      <div class="article-style">{{ . }}</div>
-      {{ end }}
-
-      {{/* Array of distinct years. */}}
-      {{ range .Pages.ByDate.Reverse }}
-        {{ $year := print (.Date.Format "2006") }}
-        {{ $.Scratch.SetInMap "years" $year $year }}
-      {{ end }}
-
-      <div class="form-row mb-4">
-        <div class="col-auto">
-          <input type="search" class="filter-search" placeholder="{{ i18n "search_placeholder" }}" autocapitalize="off"
-          autocomplete="off" autocorrect="off" role="textbox" spellcheck="false">
-        </div>
-        <div class="col-auto">
-          <select class="pub-filters pubtype-select form-control form-control-sm" data-filter-group="pubtype">
-            <option value="*">{{ i18n "publication_type" }}</option>
-            {{ $pub_types := partial "functions/get_pub_types" $ }}
-            {{ range $index, $taxonomy := site.Taxonomies.publication_types }}
-            <option value=".pubtype-{{ (int $index) }}">
-              {{ index $pub_types (int $index) }}
-            </option>
-            {{ end }}
-          </select>
-        </div>
-        <div class="col-auto">
-          <select class="pub-filters form-control form-control-sm" data-filter-group="year">
-            <option value="*">{{ i18n "date" }}</option>
-            {{ $years_sorted := $.Scratch.GetSortedMapValues "years" }}
-            {{ if $years_sorted }}
-            {{ range $year := sort $years_sorted "" "desc" }}
-            <option value=".year-{{ $year }}">
-              {{ $year }}
-            </option>
-            {{ end }}
-            {{ end }}
-          </select>
-        </div>
-        <div class="col-auto ml-auto">
-          <div class="btn-group" role="group" aria-label="Publication view toggle">
-            <button type="button" class="btn btn-sm btn-outline-primary active" id="view-citation-btn" onclick="switchPubView('citation')">
-              <i class="fas fa-list"></i> List
-            </button>
-            <button type="button" class="btn btn-sm btn-outline-primary" id="view-card-btn" onclick="switchPubView('card')">
-              <i class="fas fa-th-large"></i> Card
-            </button>
-          </div>
-        </div>
+<section class="sk-section sk-pubs" data-pubs>
+  <div class="sk-wrap">
+    <div class="sk-filter-bar" data-reveal>
+      <div class="sk-filter-group">
+        <span class="sk-filter-label">Year</span>
+        <button type="button" class="sk-filter is-active" data-filter="year" data-value="all">All</button>
+        {{ range $years }}<button type="button" class="sk-filter" data-filter="year" data-value="{{ . }}">{{ . }}</button>{{ end }}
       </div>
-
-      <div id="container-publications">
-        {{ $.Scratch.Set "current_year" "" }}
-        {{ range .Pages.ByDate.Reverse }}
-
-        {{ $year := .Date.Format "2006" }}
-        {{ if ne $year ($.Scratch.Get "current_year") }}
-        {{ $.Scratch.Set "current_year" $year }}
-        <div class="grid-sizer col-lg-12 isotope-item year-heading-item year-{{ $year }}">
-          <h2 class="pub-year-heading" style="margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 1.75rem; color: #333;">{{ $year }}</h2>
-          <hr style="border-top: 2px solid #ddd; margin-bottom: 1rem;">
-        </div>
-        {{ end }}
-
-        {{ if .Params.publication_types }}
-          {{ $.Scratch.Set "pubtype" (index .Params.publication_types 0) }}
-        {{ else }}
-          {{ $.Scratch.Set "pubtype" 0 }}
-        {{ end }}
-
-        <div class="grid-sizer col-lg-12 isotope-item pubtype-{{ $.Scratch.Get "pubtype" }} year-{{ .Date.Format "2006" }}">
-          <div class="pub-view-citation">
-            {{ partial "li_citation" . }}
-          </div>
-          <div class="pub-view-card" style="display:none;">
-            {{ partial "li_card" . }}
-          </div>
-        </div>
-
-        {{ end }}
+      <div class="sk-filter-group">
+        <span class="sk-filter-label">Topic</span>
+        <button type="button" class="sk-filter is-active" data-filter="area" data-value="all">All</button>
+        {{ range $dirs }}<button type="button" class="sk-filter" data-filter="area" data-value="{{ .id }}">{{ .title }}</button>{{ end }}
       </div>
-
-      <script>
-      function switchPubView(view) {
-        const citationEls = document.querySelectorAll('.pub-view-citation');
-        const cardEls = document.querySelectorAll('.pub-view-card');
-        const btnCitation = document.getElementById('view-citation-btn');
-        const btnCard = document.getElementById('view-card-btn');
-        
-        if (view === 'citation') {
-          citationEls.forEach(function(el) { el.style.display = ''; });
-          cardEls.forEach(function(el) { el.style.display = 'none'; });
-          btnCitation.classList.add('active');
-          btnCard.classList.remove('active');
-        } else {
-          citationEls.forEach(function(el) { el.style.display = 'none'; });
-          cardEls.forEach(function(el) { el.style.display = ''; });
-          btnCard.classList.add('active');
-          btnCitation.classList.remove('active');
-        }
-        
-        // Trigger isotope layout update if available
-        if (window.jQuery) {
-          var $container = jQuery('#container-publications');
-          if ($container.data('isotope')) {
-            $container.isotope('layout');
-          }
-        }
-      }
-      </script>
-
+      <label class="sk-search">
+        <i class="fas fa-search" aria-hidden="true"></i>
+        <input type="search" placeholder="Search title, author or venue…" data-pub-search aria-label="Search publications">
+      </label>
     </div>
-  </div>
-</div>
 
+    {{ $n := 0 }}
+    {{ range $pubs.GroupByDate "2006" }}
+    <div class="sk-pub-year" data-year-group="{{ .Key }}">
+      <h2 class="sk-year-head"><span>{{ .Key }}</span></h2>
+      {{ range .Pages }}
+      {{ $n = add $n 1 }}
+      {{ $p := . }}
+      {{ $slug := .File.ContentBaseName }}
+      {{ $areas := slice }}
+      {{ range $dirs }}{{ if in .publications $slug }}{{ $areas = $areas | append .id }}{{ end }}{{ end }}
+      {{ $fig := .Resources.GetMatch "featured.*" }}
+      <article class="sk-pub-card" data-year="{{ .Date.Format "2006" }}" data-area="{{ delimit $areas " " }}" data-text="{{ lower (printf "%s %s %s" .Title (delimit .Params.authors " ") .Params.publication) }}" data-reveal data-spotlight>
+        <span class="sk-pub-num">{{ printf "%02d" $n }}</span>
+        <div class="sk-pub-main">
+          <span class="sk-venue">{{ .Params.publication }}</span>
+          <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+          <p class="sk-authors">{{ partial "sk_authors" . }}</p>
+          <div class="sk-pub-foot">
+            {{ range $areas }}{{ $id := . }}{{ range $dirs }}{{ if eq .id $id }}<span class="sk-area-tag">{{ .title }}</span>{{ end }}{{ end }}{{ end }}
+            <div class="sk-pub-links">{{ partial "sk_pub_links" . }}</div>
+          </div>
+        </div>
+        {{ with $fig }}
+        <a class="sk-pub-thumb" href="{{ $p.RelPermalink }}" tabindex="-1" aria-hidden="true">{{ $img := .Resize "560x webp" }}<img src="{{ $img.RelPermalink }}" alt="" loading="lazy" decoding="async"></a>
+        {{ end }}
+      </article>
+      {{ end }}
+    </div>
+    {{ end }}
+
+    <p class="sk-muted-box sk-pubs-empty" data-pub-empty hidden>No papers match these filters.</p>
+  </div>
+</section>
 {{- end -}}

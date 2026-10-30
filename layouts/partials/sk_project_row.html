@@ -1,0 +1,38 @@
+{{/* One paper as a wide row: figure on the left, title / authors / venue / links on the right. */}}
+{{ $p := . }}
+{{ $fig := .Resources.GetMatch "featured.*" }}
+{{ $slug := .File.ContentBaseName }}
+{{ $areas := slice }}
+{{ range site.Data.topics }}{{ if in .publications $slug }}{{ $areas = $areas | append . }}{{ end }}{{ end }}
+{{ $repo := "" }}
+{{ with .Params.url_code }}{{ if hasPrefix . "https://github.com/" }}{{ $repo = strings.TrimSuffix "/" (strings.TrimPrefix "https://github.com/" .) }}{{ end }}{{ end }}
+
+<article class="sk-project" data-reveal{{ with $repo }} data-repo="{{ . }}"{{ end }}>
+  <a class="sk-project-media" href="{{ .RelPermalink }}" tabindex="-1" aria-hidden="true">
+    {{ with $fig }}
+      {{ $img := .Resize "900x webp" }}<img src="{{ $img.RelPermalink }}" alt="" loading="lazy" decoding="async">
+    {{ else }}
+      <span class="sk-figure-fallback">{{ $p.Params.publication }}</span>
+    {{ end }}
+    <i class="sk-scan" aria-hidden="true"></i>
+  </a>
+  <div class="sk-project-body">
+    <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    <p class="sk-authors">{{ partial "sk_authors" . }}</p>
+    <div class="sk-project-meta">
+      <span class="sk-venue">{{ .Params.publication }}</span>
+      {{ range $areas }}<span class="sk-area-tag">{{ .title }}</span>{{ end }}
+    </div>
+    <div class="sk-project-links">
+      <a class="sk-chip-btn" href="{{ .RelPermalink }}"><i class="fas fa-home" aria-hidden="true"></i> Details</a>
+      {{ with .Params.url_pdf }}<a class="sk-chip-btn" href="{{ . }}" target="_blank" rel="noopener"><i class="far fa-file-pdf" aria-hidden="true"></i> PDF</a>{{ end }}
+      {{ with .Params.url_code }}
+      <a class="sk-chip-btn sk-gh" href="{{ . }}" target="_blank" rel="noopener">
+        <i class="fab fa-github" aria-hidden="true"></i> Code
+        <span class="sk-repo-stat" data-stat="stars" hidden><i class="far fa-star" aria-hidden="true"></i> <b>–</b></span>
+        <span class="sk-repo-stat" data-stat="forks" hidden><i class="fas fa-code-branch" aria-hidden="true"></i> <b>–</b></span>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+</article>

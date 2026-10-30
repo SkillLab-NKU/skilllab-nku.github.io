@@ -1,0 +1,14 @@
+# Topics for the filter and tags on publications.
+# `publications` lists folder names under content/publication/.
+- id: sk
+  title: Structural Knowledge
+  publications: ["2025-acl-codetaxo", "2024-cikm-chain-of-layer", "2023-kdd-mlg-taxonomy"]
+- id: ir
+  title: Information Retrieval
+  publications: []
+- id: lr
+  title: Language Reasoning
+  publications: ["2024-cikm-chain-of-layer"]
+- id: al
+  title: Model Alignment
+  publications: ["2024-emnlp-oppu"]

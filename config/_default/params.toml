@@ -48,7 +48,7 @@ local_business_type = ""
 org_name = "Structural Knowledge & Intelligent Language Lab"
 
 # Description for social sharing and search engines. If undefined, superuser role is used in place.
-description = "南开大学 SKILL Lab（Structural Knowledge & Intelligent Language Lab）聚焦结构化知识、信息检索、大语言模型推理与对齐。"
+description = "SKILL Lab (Structural Knowledge & Intelligent Language Lab) at Nankai University studies structural knowledge, information retrieval, LLM reasoning and alignment."
 
 ############################
 ## Site Features
@@ -95,7 +95,7 @@ phone = ""
 
 # Address
 # For country_code, use the 2-letter ISO code (see https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 )
-address = {street = "南开大学计算机学院", city = "天津", region = "天津", postcode = "300350", country = "中国", country_code = "CN"}
+address = {street = "College of Computer Science, Nankai University", city = "Tianjin", region = "Tianjin", postcode = "300350", country = "China", country_code = "CN"}
 
 # Geographic coordinates
 # To get your coordinates, right-click on Google Maps and choose "What's here?". The coords will show up at the bottom.
@@ -114,8 +114,8 @@ appointment_url = ""
 # Contact links
 #   Set to `[]` to disable, or comment out unwanted lines with a hash `#`.
 contact_links = [
-  {icon = "github", icon_pack = "fab", name = "访问 GitHub", link = "https://github.com/SkillLab-NKU"},
-  {icon = "envelope", icon_pack = "fas", name = "联系 Skill Lab", link = "mailto:SkillNKU@outlook.com"}
+  {icon = "github", icon_pack = "fab", name = "GitHub", link = "https://github.com/SkillLab-NKU"},
+  {icon = "envelope", icon_pack = "fas", name = "Email SKILL Lab", link = "mailto:SkillNKU@outlook.com"}
  # {icon = "skype", icon_pack = "fab", name = "Skype Me", link = "skype:echo123?call"},
  # {icon = "keybase", icon_pack = "fab", name = "Chat on Keybase", link = "https://keybase.io/"},
  # {icon = "comments", icon_pack = "fas", name = "Discuss on Forum", link = "https://discourse.gohugo.io"},
@@ -138,12 +138,12 @@ twitter = ""
 
 # Date and time format (refer to https://sourcethemes.com/academic/docs/customization/#date-format )
 #   Examples: "Mon, Jan 2, 2006" or "2006-01-02"
-date_format = "2006年1月2日"
+date_format = "Jan 2, 2006"
 #   Examples: "3:04 pm" or "15:04"
 time_format = "15:04"
 
 # Address format (en-us, en-gb, de, fr-fr, zh).
-address_format = "zh"
+address_format = "en-us"
 
 ############################
 ## Advanced
@@ -193,7 +193,7 @@ plugins_js  = ["custom"]
 [publications]
   # Date format (refer to https://sourcethemes.com/academic/docs/customization/#date-format )
   #   Examples: "Mon, Jan 2, 2006" or "2006-01-02"
-  date_format = "2006年1月"
+  date_format = "January 2006"
 
   # Citation style ("apa" or "mla")
   citation_style = "apa"

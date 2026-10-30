@@ -1,0 +1,15 @@
+{{- define "main" -}}
+{{ $news := (where .Pages "Draft" false).ByDate.Reverse }}
+{{ partial "page_banner" (dict "title" "News" "kicker" "SKILL Lab · Latest News" "lead" "Papers, talks and updates from the lab." "scene" "reasoning") }}
+
+<section class="sk-section sk-news-archive">
+  <div class="sk-wrap">
+    {{ range $news.GroupByDate "2006" }}
+    <div class="sk-news-year">
+      <h2 class="sk-year-head" data-reveal><span>{{ .Key }}</span></h2>
+      <div class="sk-news-list">{{ range .Pages }}{{ partial "sk_news_row" . }}{{ end }}</div>
+    </div>
+    {{ end }}
+  </div>
+</section>
+{{- end -}}

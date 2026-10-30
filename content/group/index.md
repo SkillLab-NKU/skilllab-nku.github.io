@@ -1,24 +1,30 @@
 ---
-title: "本组"
-summary: "了解 SKILL Lab 的研究定位、负责人和长期建设方向。"
+title: "About"
+summary: "SKILL Lab's research focus, its principal investigator and what we are building."
 date: 2026-08-28
 draft: false
+type: skillpage
+lead: "The Structural Knowledge & Intelligent Language Lab is part of the College of Computer Science at Nankai University, led by Prof. Qingkai Zeng."
+show_pi: true
 ---
+
+## Mission
+
+Grounded in structural knowledge, we advance language intelligence that is reliable, interpretable and human-centred. We study how explicit knowledge structures — taxonomies, knowledge graphs and retrieved evidence — help language models reason more reliably and serve people better.
 
 ## SKILL Lab
 
-**Structural Knowledge & Intelligent Language Lab** 隶属于南开大学计算机学院，由[曾庆锴老师](https://qingkaizeng.github.io/)负责。
+The **Structural Knowledge & Intelligent Language Lab** is part of the College of Computer Science, Nankai University, and is led by [Prof. Qingkai Zeng](https://qingkaizeng.github.io/).
 
-我们长期致力于**结构化知识、信息检索与可信语言智能研究**，关注知识结构如何帮助智能系统获得更可靠、更可解释、也更符合人类需求的语言能力。
+We work on **structural knowledge, information retrieval and trustworthy language intelligence**, asking how knowledge structures can give intelligent systems language abilities that are more reliable, more interpretable and better aligned with human needs.
 
-## 研究方向
+## Research directions
 
-- **结构化知识**：分类体系归纳与扩展、知识图谱、知识组织与表示。
-- **信息检索**：检索增强生成、证据组织、可靠且可追溯的知识获取。
-- **语言模型推理**：大语言模型推理、提示学习、可靠性与可解释性评测。
-- **模型对齐**：个性化语言模型、人类偏好建模与可信人工智能。
+- **Structural knowledge** — taxonomy induction and expansion, knowledge graphs, knowledge organisation and representation.
+- **Information retrieval** — retrieval-augmented generation, evidence organisation, reliable and traceable knowledge access.
+- **Language reasoning** — LLM reasoning, prompt learning, evaluating reliability and interpretability.
+- **Model alignment** — personalised language models, human-preference modelling and trustworthy AI.
 
-## 我们正在建设
+## What we are building
 
-实验室官网将持续维护成员档案、公开论文、代码资源和学术动态。已公开成果可在[论文](/publication/)与[开源](/open-source/)页面查看。
-
+This website will keep track of our members, public papers, code and news. Published work is listed under [Publications](/publication/) and [Open Source](/open-source/).

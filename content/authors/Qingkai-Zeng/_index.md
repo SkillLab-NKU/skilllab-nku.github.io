@@ -6,17 +6,17 @@ names:
 - Qingkai Zeng
 weight: 1
 superuser: false
-role: 副教授 · 博士生导师
+role: Associate Professor · PhD Supervisor
 department:
-- 南开大学计算机学院
+- College of Computer Science, Nankai University
 organizations:
 - name: Nankai University
   url: https://www.nankai.edu.cn/
 interests:
-- 数据挖掘
-- 自然语言处理
-- 可信大模型推理
-- 大模型对齐
+- Data Mining
+- Natural Language Processing
+- Trustworthy LLM Reasoning
+- LLM Alignment
 social:
 - icon: home
   icon_pack: fas
@@ -35,4 +35,4 @@ user_groups:
 - 导师
 ---
 
-曾庆锴，南开大学计算机学院副教授、博士生导师，主要研究方向包括数据挖掘、自然语言处理、结构化知识、信息检索、可信大语言模型推理与对齐。
+Qingkai Zeng is an Associate Professor and PhD supervisor at the College of Computer Science, Nankai University. His research covers data mining, natural language processing, structural knowledge, information retrieval, and trustworthy reasoning and alignment of large language models.

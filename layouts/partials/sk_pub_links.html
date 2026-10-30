@@ -1,0 +1,7 @@
+{{/* Link buttons for a publication page. */}}
+{{ with .Params.url_pdf }}<a class="sk-chip-btn" href="{{ . }}" target="_blank" rel="noopener"><i class="far fa-file-pdf" aria-hidden="true"></i> PDF</a>{{ end }}
+{{ with .Params.url_code }}<a class="sk-chip-btn" href="{{ . }}" target="_blank" rel="noopener"><i class="fab fa-github" aria-hidden="true"></i> Code</a>{{ end }}
+{{ with .Params.url_dataset }}<a class="sk-chip-btn" href="{{ . }}" target="_blank" rel="noopener"><i class="fas fa-database" aria-hidden="true"></i> Data</a>{{ end }}
+{{ with .Params.url_slides }}<a class="sk-chip-btn" href="{{ . }}" target="_blank" rel="noopener"><i class="fas fa-chalkboard" aria-hidden="true"></i> Slides</a>{{ end }}
+{{ with .Params.url_project }}<a class="sk-chip-btn" href="{{ . }}" target="_blank" rel="noopener"><i class="fas fa-globe" aria-hidden="true"></i> Project</a>{{ end }}
+{{ with .Resources.GetMatch "cite.bib" }}<a class="sk-chip-btn js-cite-modal" href="#" data-filename="{{ .RelPermalink }}"><i class="fas fa-quote-right" aria-hidden="true"></i> Cite</a>{{ end }}

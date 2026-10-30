@@ -1,59 +1,44 @@
 # Navigation Links
-#   To link a homepage widget, specify the URL as a hash `#` followed by the filename of the
-#     desired widget in your `content/home/` folder.
-#   The weight parameter defines the order that the links will appear in.
+#   Top-level items keep the lab's original navigation order.
+#   An item with children opens a dropdown when clicked; add `parent = "<identifier>"` to nest a link.
+#   "Contact" jumps to the contact block in the footer, which is present on every page.
 
 [[main]]
-  name = "首页"
+  name = "Home"
   url = "/"
   weight = 10
 
 [[main]]
-  name = "本组"
-  url = "/group"
+  name = "Group"
+  url = "/group/"
   weight = 20
 
 [[main]]
-  name = "论文"
-  url = "/publication"
-  identifier = "Publications"
+  name = "Publications"
+  url = "/publication/"
   weight = 30
 
-#  [[main]]
-#  name = "Research"
-#  url = "/research"
-#  weight = 30
-#  identifier = "research-id"
-
 [[main]]
-  name = "成员"
-  url = "/people"
-  identifier = "people"
+  name = "People"
+  url = "/people/"
   weight = 40
 
 [[main]]
-  name = "开源"
-  url = "/open-source"
+  name = "Open Source"
+  url = "/open-source/"
   weight = 50
 
 [[main]]
-  name = "动态"
-  url = "#talks"
+  name = "News"
+  url = "/talk/"
   weight = 60
 
 [[main]]
-  name = "加入我们"
-  url = "/join"
+  name = "Join Us"
+  url = "/join/"
   weight = 70
 
 [[main]]
-  name = "联系"
+  name = "Contact"
   url = "#contact"
   weight = 80
-
-# Link to a PDF of your resume/CV from the menu.
-# To enable, copy your resume/CV to `static/files/cv.pdf` and uncomment the lines below.
-# [[main]]
-#    name = "CV"
-#    url = "files/cv.pdf"
-#    weight = 70

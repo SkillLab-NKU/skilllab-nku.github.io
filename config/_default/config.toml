@@ -6,7 +6,7 @@
 # Each configuration section is defined by a name in square brackets (e.g. `[outputs]`).
 
 # Title of your site
-title = "SKILL LAB｜南开大学"
+title = "SKILL Lab · Nankai University"
 
 # The URL of your site.
 # End your URL with a `/` trailing slash, e.g. `https://example.com/`.
@@ -24,8 +24,8 @@ copyright = "&copy; {year} SKILL Lab, Nankai University"
 enableGitInfo = false
 
 # Default language to use (if you setup multilingual support)
-defaultContentLanguage = "zh"
-hasCJKLanguage = true  # Correct summaries and word counts for Chinese content.
+defaultContentLanguage = "en"
+hasCJKLanguage = true  # Some content (names, notes) is still Chinese.
 defaultContentLanguageInSubdir = false
 removePathAccents = true  # Workaround for https://github.com/gohugoio/hugo/issues/5687
 

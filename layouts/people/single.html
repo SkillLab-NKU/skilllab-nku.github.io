@@ -1,0 +1,51 @@
+{{- define "main" -}}
+{{ $profiles := where (site.GetPage "/authors").Pages "Params.user_groups" "!=" nil }}
+{{ $pis := slice }}
+{{ range $profiles }}{{ if intersect .Params.user_groups $.Params.pi_groups }}{{ $pis = $pis | append . }}{{ end }}{{ end }}
+
+{{ $groups := slice }}
+{{ range .Params.groups }}
+  {{ $g := . }}
+  {{ $members := slice }}
+  {{ range $profiles }}{{ if intersect .Params.user_groups $g.user_groups }}{{ $members = $members | append . }}{{ end }}{{ end }}
+  {{ if $members }}{{ $groups = $groups | append (dict "name" $g.name "members" $members) }}{{ end }}
+{{ end }}
+
+{{ partial "page_banner" (dict "title" .Title "kicker" "SKILL Lab · Team" "lead" .Params.lead "scene" "alignment") }}
+
+<section class="sk-section sk-people">
+  <div class="sk-wrap">
+    <div class="sk-eyebrow" data-reveal>Faculty</div>
+    {{ range $pis }}{{ partial "sk_pi_card" . }}{{ end }}
+
+    {{ with $groups }}
+    <div class="sk-people-tabs" role="tablist" data-tabs data-reveal>
+      {{ range $i, $g := . }}
+      <button type="button" role="tab" class="sk-tab{{ if eq $i 0 }} is-active{{ end }}" aria-selected="{{ if eq $i 0 }}true{{ else }}false{{ end }}" data-tab="{{ $i }}">
+        {{ $g.name }}<b>{{ len $g.members }}</b>
+      </button>
+      {{ end }}
+    </div>
+
+    {{ range $i, $g := . }}
+    <div class="sk-member-grid{{ if eq $i 0 }} is-active{{ end }}" role="tabpanel" data-panel="{{ $i }}">
+      {{ range $g.members }}
+      {{ $m := . }}
+      {{ $avatar := (.Resources.ByType "image").GetMatch "*avatar*" }}
+      <a class="sk-member" href="{{ .RelPermalink }}" data-spotlight>
+        <div class="sk-member-avatar">
+          {{ with $avatar }}{{ $img := .Fill "320x320 Center" }}<img src="{{ $img.RelPermalink }}" alt="{{ $m.Title }}" loading="lazy">{{ else }}<span>{{ substr (index .Params.names 0 | default .Title) 0 1 }}</span>{{ end }}
+        </div>
+        <h3>{{ .Title }}</h3>
+        {{ with .Params.role }}<p class="sk-member-role">{{ . }}</p>{{ end }}
+        {{ with .Params.interests }}<div class="sk-member-tags">{{ range first 3 . }}<span>{{ . }}</span>{{ end }}</div>{{ end }}
+      </a>
+      {{ end }}
+    </div>
+    {{ end }}
+    {{ end }}
+  </div>
+</section>
+
+{{ partial "sk_cta" . }}
+{{- end -}}

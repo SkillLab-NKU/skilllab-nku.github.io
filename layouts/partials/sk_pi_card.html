@@ -1,0 +1,22 @@
+{{/* Large profile card for a faculty member. Context: author profile page. */}}
+{{ $avatar := (.Resources.ByType "image").GetMatch "*avatar*" }}
+<article class="sk-pi-card" data-reveal data-spotlight>
+  <div class="sk-pi-photo">
+    {{ with $avatar }}{{ $img := .Fill "640x640 Center" }}<img src="{{ $img.RelPermalink }}" alt="{{ $.Title }}" loading="lazy">{{ end }}
+  </div>
+  <div class="sk-pi-body">
+    <div class="sk-eyebrow">Principal Investigator</div>
+    <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+    {{ with .Params.role }}<p class="sk-pi-role">{{ . }}{{ with $.Params.department }} · {{ index . 0 }}{{ end }}</p>{{ end }}
+    <div class="sk-pi-bio">{{ .Content }}</div>
+    {{ with .Params.interests }}<div class="sk-tags">{{ range . }}<span>{{ . }}</span>{{ end }}</div>{{ end }}
+    <div class="sk-pi-links">
+      {{ range .Params.social }}
+        {{ $pack := .icon_pack | default "fas" }}
+        {{ $label := .icon }}
+        {{ if eq .icon "home" }}{{ $label = "Homepage" }}{{ else if eq .icon "google-scholar" }}{{ $label = "Scholar" }}{{ else if eq .icon "github" }}{{ $label = "GitHub" }}{{ else if eq .icon "envelope" }}{{ $label = "Email" }}{{ end }}
+        <a class="sk-chip-btn" href="{{ .link }}"{{ if hasPrefix .link "http" }} target="_blank" rel="noopener"{{ end }}><i class="{{ if eq $pack "ai" }}ai ai-{{ .icon }}{{ else }}{{ $pack }} fa-{{ .icon }}{{ end }}" aria-hidden="true"></i> {{ $label }}</a>
+      {{ end }}
+    </div>
+  </div>
+</article>

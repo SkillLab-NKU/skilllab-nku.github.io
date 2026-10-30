@@ -1,0 +1,15 @@
+{{/* Shared page banner. dict: "title", "kicker", "lead", "stats" (slice of dict n/label) */}}
+<header class="sk-banner">
+  <canvas class="sk-graph" data-scene="{{ .scene | default "graph" }}" data-density="0.5" aria-hidden="true"></canvas>
+  <div class="sk-banner-fade" aria-hidden="true"></div>
+  <div class="sk-wrap">
+    {{ with .kicker }}<div class="sk-eyebrow" data-reveal>{{ . }}</div>{{ end }}
+    <h1 class="sk-banner-title" data-reveal>{{ .title }}</h1>
+    {{ with .lead }}<p class="sk-banner-lead" data-reveal>{{ . }}</p>{{ end }}
+    {{ with .stats }}
+    <dl class="sk-banner-stats" data-reveal>
+      {{ range . }}<div><dd data-count="{{ .n }}">{{ .n }}</dd><dt>{{ .label }}</dt></div>{{ end }}
+    </dl>
+    {{ end }}
+  </div>
+</header>

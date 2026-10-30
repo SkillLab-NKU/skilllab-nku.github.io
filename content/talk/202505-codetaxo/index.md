@@ -1,9 +1,9 @@
 ---
-title: 'CodeTaxo 入选 ACL 2025 Findings'
-summary: 'CodeTaxo 论文发表于 ACL 2025 Findings。'
+title: 'CodeTaxo accepted to Findings of ACL 2025'
+summary: 'Our CodeTaxo paper appears in Findings of ACL 2025.'
 date: '2025-05-01'
 featured: false
 draft: false
 ---
 
-CodeTaxo 论文发表于 ACL 2025 Findings。
+Our paper *CodeTaxo: Enhancing Taxonomy Expansion with Limited Examples via Code Language Prompts* appears in Findings of ACL 2025.

@@ -1,10 +1,10 @@
 ---
-title: 成员 D（示例）
+title: Member D (placeholder)
 authors: [Member D]
 names: [Member D]
 weight: 202601
 superuser: false
-role: 硕士研究生 · 待补充真实信息
-interests: [多模态学习]
+role: Master Student · details to be added
+interests: [Multimodal Learning]
 user_groups: [研究生]
 ---
